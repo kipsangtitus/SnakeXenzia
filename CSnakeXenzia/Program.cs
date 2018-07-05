@@ -4,20 +4,24 @@ namespace CSnakeXenzia
 {
     class Program
     {
+        static char [][] grid=new char[20][];
+        static int height=20;
+        static int width=50;
+        static int wormx = 25;
+        static int wormy=9;
+
         static void Main(string[] args)
         {
             InitFrame();
             Drawframe();
+            Drawsnakehead();
+            DrawSnakebodyOnHead();
             Console.ReadKey();
            
 
         }
        
-        static char [][] grid=new char[20][];
-        
-        static int height=20;
-        static int width=50;
-
+      
         private static void InitFrame()
         {
             Console.CursorVisible = false;
@@ -69,6 +73,22 @@ namespace CSnakeXenzia
                 }
             }
         }
+
+        public static void Drawsnakehead()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(wormx,wormy);
+            Console.Write('@');
+        }
+
+        public static void DrawSnakebodyOnHead()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(wormx,wormy);
+            Console.Write('o');
+        }
+       
+        
     }
     
    
