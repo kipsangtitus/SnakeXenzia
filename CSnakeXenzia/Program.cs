@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSnakeXenzia
 {
@@ -9,13 +10,31 @@ namespace CSnakeXenzia
         static int width=50;
         static int wormx = 25;
         static int wormy=9;
+        static List<position>position=new List<position>();
+        static int snakelength = 3;
+
+        private static bool isGameOver = false;
+       
+        
+        
 
         static void Main(string[] args)
         {
             InitFrame();
             Drawframe();
-            Drawsnakehead();
-            DrawSnakebodyOnHead();
+            initsnake();
+            DrawSnake();
+            //Drawsnakehead();
+            //DrawSnakebodyOnHead();
+            
+
+            while (!isGameOver)
+            {
+                Drawsnakehead();
+                DrawSnakebodyOnHead();
+                SnakeMotion();
+            }
+          
             Console.ReadKey();
            
 
@@ -87,8 +106,52 @@ namespace CSnakeXenzia
             Console.SetCursorPosition(wormx,wormy);
             Console.Write('o');
         }
-       
-        
+
+        public static void initsnake()
+        {
+            position.Add(new position{x=10,y=10});
+            position.Add(new position{x=11,y=10});
+            position.Add(new position{x=12,y=10});
+
+            foreach (position pos in position)
+            {
+                grid[pos.y][pos.x] = '0';
+            }
+        }
+
+        public static void DrawSnake()
+        {
+            int count = 0;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            foreach (var pos in position)
+            {
+               Console.SetCursorPosition(pos.x,pos.y);
+                count++;
+                if (count<3)
+                {
+                    Console.WriteLine('o');
+                }
+                else
+                {
+                    Console.WriteLine('o');
+                }
+
+            }
+        }
+
+        public static void SnakeMotion()
+        {
+            Console.SetCursorPosition(position[0].x,position[0].y);
+            Console.Write(' ');
+
+            if (position.Count!=snakelength)
+            {
+                grid[position[0].y][position[0].x] = ' ';
+                    position.RemoveAt(0);
+            }
+        }
+
+
     }
     
    

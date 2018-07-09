@@ -13,6 +13,7 @@
             </e>
           </e>
         </e>
+        <e p="position.cs" t="Include" />
         <e p="Program.cs" t="Include" />
       </e>
       <e p="CSnakeXenzia.sln" t="IncludeFlat" />
